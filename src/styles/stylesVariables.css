@@ -1,11 +1,11 @@
 body {
   --base-size: 8px;
-  --base-block-size: 48px;
+  --base-block-heigh: 48px;
   --base-footer-heigh: 64px;
 
   --bg-color-main: #eeeded;
-  --bg-color-alt: #bfdddf;
-  --color-highlight: #70bdc2;
+  --bg-color-alt: #507071;
+  --color-highlight: #387480;
   --color-alt-foreground: #0e9aa7;
-  --color-highlight-foreground: white;
+  --color-highlight-foreground: #eceeee;
 }

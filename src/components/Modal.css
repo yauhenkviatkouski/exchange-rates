@@ -17,13 +17,13 @@
   width: 60vw;
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-color-alt);
+  background-color: var(--color-highlight-foreground);
   box-shadow: var(--base-size) var(--base-size) calc(var(--base-size) * 8) 0px
     rgb(194 214 201);
 }
 
 .ModalHeader {
-  min-height: var(--base-block-size);
+  min-height: 64px;
   padding: var(--base-size) calc(var(--base-size) * 8) var(--base-size)
     var(--base-size);
   background-color: var(--color-highlight);

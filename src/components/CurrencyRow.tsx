@@ -21,7 +21,8 @@ const CurrencyRow = (props: CurrencyRowProps) => {
 
   function isValidInput(value: string) {
     return (
-      value.length <= constants.MAX_CONVERTING_VALUE_LENGTH &&
+      (value.length <= constants.MAX_CONVERTING_VALUE_LENGTH ||
+        value.length <= String(props.value).length) &&
       !isNaN(Number(value))
     );
   }
@@ -52,6 +53,7 @@ const CurrencyRow = (props: CurrencyRowProps) => {
 
         <p className="CurrencyRow_Name">{props.name}</p>
         <input
+          aria-label="enter value"
           className="CurrencyRow_Input"
           onChange={(e) =>
             isValidInput(e.target.value) &&
@@ -61,6 +63,7 @@ const CurrencyRow = (props: CurrencyRowProps) => {
           value={props.value}
         />
         <button
+          aria-label="Show chart"
           className="CurrencyRow_ChartButton"
           onClick={() => setIsChartDisplaying(true)}
         >
