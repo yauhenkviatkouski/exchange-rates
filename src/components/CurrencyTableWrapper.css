@@ -1,0 +1,6 @@
+.CurrencyTableWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--base-size) * 2);
+}

@@ -1,0 +1,17 @@
+.ErrorMessageWrapper {
+  max-width: 450px;
+  margin: 0 auto;
+  background-color: rgb(233, 92, 92);
+  color: var(--color-highlight-foreground);
+  box-shadow: var(--base-size) var(--base-size) calc(var(--base-size) * 8) 0px
+    rgb(207, 183, 183);
+}
+
+.ErrorMessageTitle {
+  padding: var(--base-size);
+  background-color: rgb(230, 63, 63);
+}
+
+.ErrorMessageText {
+  padding: var(--base-size);
+}
