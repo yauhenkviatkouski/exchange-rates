@@ -23,7 +23,7 @@
 }
 
 .ModalHeader {
-  min-height: var(--base-block-heigh);
+  min-height: var(--base-block-size);
   padding: var(--base-size) calc(var(--base-size) * 8) var(--base-size)
     var(--base-size);
   background-color: var(--color-highlight);
