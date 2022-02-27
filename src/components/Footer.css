@@ -1,0 +1,9 @@
+.Footer {
+  height: var(--base-footer-heigh);
+  display: flex;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #838c8d;
+  text-align: center;
+  background-color: var(--bg-color-alt);
+}

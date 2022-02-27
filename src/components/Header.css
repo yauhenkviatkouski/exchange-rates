@@ -1,0 +1,7 @@
+.Header {
+  padding: calc(var(--base-size) * 2);
+  margin-bottom: calc(var(--base-size) * 2);
+  text-align: center;
+  background-color: var(--color-highlight);
+  color: var(--color-highlight-foreground);
+}
