@@ -1,0 +1,28 @@
+.CurrencyRow_Wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 330px;
+  width: 100%;
+}
+
+.CurrencyRow_FlagIcon {
+  display: flex;
+  width: var(--base-block-size);
+  flex-direction: column;
+  align-items: center;
+}
+
+.CurrencyRow_Name {
+  width: var(--base-block-size);
+}
+
+.CurrencyRow_Input {
+  width: 150px;
+  text-align: right;
+  max-height: var(--base-block-size);
+}
+
+.CurrencyRow_ChartButton {
+  color: #838c8d;
+}
