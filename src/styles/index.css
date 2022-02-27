@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color-main);
+}
+
+main {
+  min-height: calc(100vh - var(--base-footer-heigh));
 }
 
 code {

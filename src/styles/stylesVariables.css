@@ -1,0 +1,11 @@
+body {
+  --base-size: 8px;
+  --base-block-heigh: 48px;
+  --base-footer-heigh: 64px;
+
+  --bg-color-main: #eeeded;
+  --bg-color-alt: #bfdddf;
+  --color-highlight: #70bdc2;
+  --color-alt-foreground: #0e9aa7;
+  --color-highlight-foreground: white;
+}
