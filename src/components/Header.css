@@ -5,3 +5,7 @@
   background-color: var(--color-highlight);
   color: var(--color-highlight-foreground);
 }
+
+.Header H1 {
+  font-size: 1.5rem;
+}

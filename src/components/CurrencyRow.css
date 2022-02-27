@@ -13,12 +13,20 @@
   align-items: center;
 }
 
+@media only screen and (max-width: 240px) {
+  .CurrencyRow_FlagIcon {
+    display: none;
+  }
+}
+
 .CurrencyRow_Name {
   width: var(--base-block-size);
 }
 
 .CurrencyRow_Input {
-  width: 150px;
+  max-width: 150px;
+  width: 100%;
+  margin: var(--base-size);
   text-align: right;
   max-height: var(--base-block-size);
 }
