@@ -8,6 +8,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import ErrorMessage from '../components/ErrorMessage';
 import Spinner from '../components/Spinner';
 import constants from '../constants';
 import useCurrencyChart from '../hooks/use-currency-chart';
@@ -23,7 +24,7 @@ function CurrencyChart(props: CurrencyChartProps) {
     useCurrencyChart(props);
 
   if (error) {
-    return <p>{error}</p>;
+    return <ErrorMessage errorText={error} />;
   }
   if (loading && !error) {
     return <Spinner />;
@@ -39,6 +40,7 @@ function CurrencyChart(props: CurrencyChartProps) {
               setCurrencySecond(e.target.value)
             }
             id="currencyList"
+            data-testid="CurrencyChart_currencyList"
           >
             {constants.DEFAULT_CURRENCIES_LIST.filter(
               (cur) => cur !== props.currency,
