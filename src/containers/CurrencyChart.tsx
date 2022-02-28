@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
   LineChart,
   Line,
@@ -11,7 +10,7 @@ import {
 } from 'recharts';
 import Spinner from '../components/Spinner';
 import constants from '../constants';
-import currencyApi from '../services/currencyApi';
+import useCurrencyChart from '../hooks/use-currency-chart';
 
 export type CurrencyChartProps = {
   currency: string;
@@ -20,40 +19,8 @@ export type CurrencyChartProps = {
 };
 
 function CurrencyChart(props: CurrencyChartProps) {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<{ date: string; rate: string }[] | null>(
-    null,
-  );
-  const [error, setError] = useState<string | null>(null);
-  const [currencySecond, setCurrencySecond] = useState(
-    props.currency === 'EUR' ? 'USD' : 'EUR',
-  );
-
-  useEffect(() => {
-    async function downloadData() {
-      const data = await currencyApi.getTimeSeries(
-        props.currency,
-        currencySecond,
-        props.startDate,
-        props.endDate,
-      );
-      const transformedData = data.map((item) => ({
-        date: item.date.toLocaleDateString(),
-        rate: item.rate.toFixed(4),
-      }));
-      setLoading(false);
-      setData(transformedData);
-    }
-
-    downloadData().catch((e) => {
-      setLoading(false);
-      if (e instanceof Error && e.message) {
-        setError(e.message);
-      } else {
-        setError('Something went wrong ¯\\_(ツ)_/¯');
-      }
-    });
-  }, [currencySecond, props.currency, props.endDate, props.startDate]);
+  const { loading, error, data, currencySecond, setCurrencySecond } =
+    useCurrencyChart(props);
 
   if (error) {
     return <p>{error}</p>;

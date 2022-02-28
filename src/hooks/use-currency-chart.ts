@@ -1,53 +1,44 @@
 import { useEffect, useState } from 'react';
 import currencyApi from '../services/currencyApi';
-import constants from '../constants';
+import { CurrencyChartProps } from '../containers/CurrencyChart';
 
-type RatesResponse = { [key: string]: number };
-type Currencies = { name: string; value: number };
-
-function useCurrencyTable() {
-  const [rates, setRates] = useState<RatesResponse | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [converted, setConverted] = useState<Currencies[] | null>(null);
-
-  function convertCurrencies(
-    rates: { [currencyName: string]: number },
-    currencyName: string = constants.DEFAULT_BASE_CURRENCY,
-    currencyValue: number = constants.DEFAULT_BASE_CURRENCY_VALUE,
-  ): Currencies[] {
-    return constants.DEFAULT_CURRENCIES_LIST.map((name) => ({
-      name: name,
-      value:
-        currencyName === name
-          ? currencyValue
-          : Number((currencyValue * rates[name]).toFixed(2)),
-    }));
-  }
-
-  function onChangeCurrencyValue(name: string, value: number) {
-    rates && setConverted(convertCurrencies(rates, name, value));
-  }
+function useCurrencyChart(props: CurrencyChartProps) {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<{ date: string; rate: string }[] | null>(
+    null,
+  );
+  const [error, setError] = useState<string | null>(null);
+  const [currencySecond, setCurrencySecond] = useState(
+    props.currency === 'EUR' ? 'USD' : 'EUR',
+  );
 
   useEffect(() => {
-    setLoading(true);
-    async function downloadLatestRates() {
-      const rates = await currencyApi.getLatest();
+    async function downloadData() {
+      const data = await currencyApi.getTimeSeries(
+        props.currency,
+        currencySecond,
+        props.startDate,
+        props.endDate,
+      );
+      const transformedData = data.map((item) => ({
+        date: item.date.toLocaleDateString(),
+        rate: item.rate.toFixed(4),
+      }));
       setLoading(false);
-      setRates(rates);
-      setConverted(convertCurrencies(rates));
+      setData(transformedData);
     }
-    try {
-      downloadLatestRates();
-    } catch (e) {
-      if (e instanceof Error) {
-        setError(e.message || 'Unknown error');
-      }
-      setError('Something went wrong ¯\\_(ツ)_/¯');
-    }
-  }, []);
 
-  return { rates, loading, error, converted, onChangeCurrencyValue };
+    downloadData().catch((e) => {
+      setLoading(false);
+      if (e instanceof Error && e.message) {
+        setError(e.message);
+      } else {
+        setError('Something went wrong ¯\\_(ツ)_/¯');
+      }
+    });
+  }, [currencySecond, props.currency, props.endDate, props.startDate]);
+
+  return { loading, data, error, currencySecond, setCurrencySecond };
 }
 
-export default useCurrencyTable;
+export default useCurrencyChart;
