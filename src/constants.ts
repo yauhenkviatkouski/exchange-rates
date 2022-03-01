@@ -12,8 +12,7 @@ const constants = {
     'CAD',
     'AUD',
     'SEK',
-    'PLN',
-    'RUB',
+    'PLN'
   ],
 };
 
